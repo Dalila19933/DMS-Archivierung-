@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lückentext</title>
-<style>
 
-    <style>
+<style>
 body {
     font-family: Arial, sans-serif;
     max-width: 700px;
@@ -15,6 +14,7 @@ body {
     line-height: 2.2;
     font-size: 20px;
 }
+
 h2 {
     margin-bottom: 35px;
     text-align: center;
@@ -29,12 +29,15 @@ input {
     padding: 8px;
     font-size: 18px;
     margin: 0 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }
 
 button {
     margin: 15px 5px;
     padding: 12px 20px;
     font-size: 18px;
+    cursor: pointer;
 }
 
 #loesungen {
@@ -45,8 +48,13 @@ button {
     border-radius: 8px;
 }
 
-@media (max-width: 600px) {
+#ergebnis {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
 
+@media (max-width: 600px) {
     body {
         font-size: 22px;
         line-height: 2.4;
@@ -74,94 +82,116 @@ button {
         padding: 15px;
     }
 }
-
-body {
-    font-family: Arial, sans-serif;
-    max-width: 700px;
-    margin: 30px auto;
-}
-input {
-    width: 120px;
-    margin: 0 5px;
-}
-button {
-    margin: 10px 5px;
-    padding: 8px 15px;
-}
-#loesungen {
-    display: none;
-    margin-top: 20px;
-    background: #f0f0f0;
-    padding: 10px;
-}
 </style>
 </head>
+
 <body>
 
-<h2>DMS & Digitale Archivierung LF2 / Group B </h2>
-
+<h2>DMS & Digitale Archivierung LF2 / Group B</h2>
 
 <p>
-1-Ein DMS speichert Dokumente  <input type="text" id="a1"> (Digital/Handschriftlich).
+1 - Ein DMS speichert Dokumente
+<input type="text" id="a1">
+(Digital / Handschriftlich)
 </p>
 
 <p>
-2- Die GoBD regeln dogotale <input type="text" id="a2> (Dokumente/ Möbel).
+2 - Die GoBD regeln digitale
+<input type="text" id="a2">
+(Dokumente / Möbel)
 </p>
 
 <p>
-3- Dogotale Dokumente haben geliche  <input type="text" id="a3> ( Aufbewahrungsfristen/Farben).
+3 - Digitale Dokumente haben gleiche
+<input type="text" id="a3">
+(Aufbewahrungsfristen / Farben)
 </p>
 
 <p>
-4- Regelmäßiger Backup schützen vor <input type="text" id="a4>  (Datenverlust/Druckern).
+4 - Regelmäßige Backups schützen vor
+<input type="text" id="a4">
+(Datenverlust / Druckern)
 </p>
 
 <p>
-5- Das Generationenprinzip nutzt mehrere <input type="text" id="a5> (Sicherungen/ Tastaturen)
+5 - Das Generationenprinzip nutzt mehrere
+<input type="text" id="a5">
+(Sicherungen / Tastaturen)
 </p>
 
 <p>
-6-Eine analoge Registratur verwendet <input type="text" id="a6> (Papierakten/Datenbanken)
+6 - Eine analoge Registratur verwendet
+<input type="text" id="a6">
+(Papierakten / Datenbanken)
 </p>
 
 <p>
-7- Das Finanzamt  <input type="text" id="a7> (darf/darf nicht) auf Daten zugreifen
+7 - Das Finanzamt
+<input type="text" id="a7">
+(darf / darf nicht) auf Daten zugreifen.
 </p>
 
-
-<button onclick="zeigeLoesungen()">Lösungen anzeigen</button>
+<button onclick="pruefen()">Prüfen & Lösungen anzeigen</button>
 <button onclick="zuruecksetzen()">Wiederholen</button>
+
+<div id="ergebnis"></div>
 
 <div id="loesungen">
     <h3>Lösungen</h3>
     <ul>
-        <li> Digital</li>
-        <li> Dokumente</li>
-        <li> Aufbewahrungsfristen</li>
-	<li> Datenverlust</li>
-	<li> Sicherungen</li>
-	<li> Papierakten</li>
-	<li> Darf</li>
+        <li>1. Digital</li>
+        <li>2. Dokumente</li>
+        <li>3. Aufbewahrungsfristen</li>
+        <li>4. Datenverlust</li>
+        <li>5. Sicherungen</li>
+        <li>6. Papierakten</li>
+        <li>7. Darf</li>
     </ul>
 </div>
 
 <script>
-function zeigeLoesungen() {
+function pruefen() {
+
+    const loesungen = {
+        a1: "digital",
+        a2: "dokumente",
+        a3: "aufbewahrungsfristen",
+        a4: "datenverlust",
+        a5: "sicherungen",
+        a6: "papierakten",
+        a7: "darf"
+    };
+
+    let richtig = 0;
+
+    for (let id in loesungen) {
+
+        let feld = document.getElementById(id);
+        let eingabe = feld.value.trim().toLowerCase();
+
+        if (eingabe === loesungen[id]) {
+            feld.style.backgroundColor = "#90EE90"; // Grün
+            richtig++;
+        } else {
+            feld.style.backgroundColor = "#FFB6C1"; // Rot
+        }
+    }
+
+    document.getElementById("ergebnis").innerHTML =
+        "Richtig: " + richtig + " von 7";
+
     document.getElementById("loesungen").style.display = "block";
 }
 
 function zuruecksetzen() {
-    document.getElementById("a1").value = "";
-    document.getElementById("a2").value = "";
-    document.getElementById("a3").value = "";
-    document.getElementById("a4").value = "";
-    document.getElementById("a5").value = "";
-    document.getElementById("a6").value = "";
-    document.getElementById("a7").value = "";
 
+    for (let i = 1; i <= 7; i++) {
+        let feld = document.getElementById("a" + i);
+        feld.value = "";
+        feld.style.backgroundColor = "white";
+    }
 
-
+    document.getElementById("ergebnis").innerHTML = "";
     document.getElementById("loesungen").style.display = "none";
 }
 </script>
