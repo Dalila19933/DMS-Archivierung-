@@ -1,128 +1,70 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<title>Lückentext</title>
-
 <style>
 body {
     font-family: Arial, sans-serif;
     max-width: 700px;
-    margin: 30px auto;
+    margin: 20px auto;
+    padding: 15px;
+    line-height: 2.2;
+    font-size: 20px;
+}
+
+h2 {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 25px;
 }
 
 input {
-    width: 160px;
+    width: 180px;
+    padding: 8px;
+    font-size: 18px;
     margin: 0 5px;
-    padding: 4px;
 }
 
 button {
-    margin: 10px 5px;
-    padding: 8px 15px;
+    margin: 15px 5px;
+    padding: 12px 20px;
+    font-size: 18px;
 }
 
 #loesungen {
     display: none;
-    margin-top: 20px;
+    margin-top: 25px;
     background: #f0f0f0;
-    padding: 10px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        font-size: 22px;
+        line-height: 2.4;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+
+    p {
+        margin-bottom: 35px;
+    }
+
+    input {
+        width: 200px;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 15px;
+        font-size: 20px;
+        padding: 15px;
+    }
 }
 </style>
-</head>
-
-<body>
-
-<h2>DMS & Digitale Archivierung LF2 / Group B</h2>
-
-<p>
-1. Ein DMS speichert Dokumente <input type="text" id="a1"> (Digital/Handschriftlich).
-</p>
-
-<p>
-2. Die GoBD regeln digitale <input type="text" id="a2"> (Dokumente/Möbel).
-</p>
-
-<p>
-3. Digitale Dokumente haben gleiche <input type="text" id="a3"> (Aufbewahrungsfristen/Farben).
-</p>
-
-<p>
-4. Regelmäßige Backups schützen vor <input type="text" id="a4"> (Datenverlust/Druckern).
-</p>
-
-<p>
-5. Das Generationenprinzip nutzt mehrere <input type="text" id="a5"> (Sicherungen/Tastaturen).
-</p>
-
-<p>
-6. Eine analoge Registratur verwendet <input type="text" id="a6"> (Papierakten/Datenbanken).
-</p>
-
-<p>
-7. Das Finanzamt <input type="text" id="a7"> (darf/darf nicht) auf Daten zugreifen.
-</p>
-
-<button onclick="zeigeLoesungen()">Lösungen anzeigen</button>
-<button onclick="zuruecksetzen()">Wiederholen</button>
-
-<div id="loesungen">
-    <h3>Lösungen</h3>
-    <ul>
-        <li>Digital</li>
-        <li>Dokumente</li>
-        <li>Aufbewahrungsfristen</li>
-        <li>Datenverlust</li>
-        <li>Sicherungen</li>
-        <li>Papierakten</li>
-        <li>Darf</li>
-    </ul>
-</div>
-
-<script>
-const loesungen = [
-    "digital",
-    "dokumente",
-    "aufbewahrungsfristen",
-    "datenverlust",
-    "sicherungen",
-    "papierakten",
-    "darf"
-];
-
-function zeigeLoesungen() {
-
-    for (let i = 1; i <= 7; i++) {
-
-        const feld = document.getElementById("a" + i);
-        const eingabe = feld.value.trim().toLowerCase();
-
-        if (eingabe === loesungen[i - 1]) {
-            feld.style.backgroundColor = "#90EE90";
-            feld.style.border = "2px solid green";
-        } else {
-            feld.style.backgroundColor = "#FFB6C1";
-            feld.style.border = "2px solid red";
-        }
-    }
-
-    document.getElementById("loesungen").style.display = "block";
-}
-
-function zuruecksetzen() {
-
-    for (let i = 1; i <= 7; i++) {
-
-        const feld = document.getElementById("a" + i);
-
-        feld.value = "";
-        feld.style.backgroundColor = "";
-        feld.style.border = "";
-    }
-
-    document.getElementById("loesungen").style.display = "none";
-}
-</script>
-
-</body>
-</html>
