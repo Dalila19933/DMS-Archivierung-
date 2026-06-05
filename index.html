@@ -14,6 +14,7 @@ body {
 input {
     width: 160px;
     margin: 0 5px;
+    padding: 4px;
 }
 
 button {
@@ -79,14 +80,46 @@ button {
 </div>
 
 <script>
+const loesungen = [
+    "digital",
+    "dokumente",
+    "aufbewahrungsfristen",
+    "datenverlust",
+    "sicherungen",
+    "papierakten",
+    "darf"
+];
+
 function zeigeLoesungen() {
+
+    for (let i = 1; i <= 7; i++) {
+
+        const feld = document.getElementById("a" + i);
+        const eingabe = feld.value.trim().toLowerCase();
+
+        if (eingabe === loesungen[i - 1]) {
+            feld.style.backgroundColor = "#90EE90";
+            feld.style.border = "2px solid green";
+        } else {
+            feld.style.backgroundColor = "#FFB6C1";
+            feld.style.border = "2px solid red";
+        }
+    }
+
     document.getElementById("loesungen").style.display = "block";
 }
 
 function zuruecksetzen() {
+
     for (let i = 1; i <= 7; i++) {
-        document.getElementById("a" + i).value = "";
+
+        const feld = document.getElementById("a" + i);
+
+        feld.value = "";
+        feld.style.backgroundColor = "";
+        feld.style.border = "";
     }
+
     document.getElementById("loesungen").style.display = "none";
 }
 </script>
